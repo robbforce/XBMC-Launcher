@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.XBMCLauncherGUI.frmXBMCLauncherGUI
+      Me.MainForm = Global.KodiLauncherGUI.frmKodiLauncherGUI
         End Sub
     End Class
 End Namespace

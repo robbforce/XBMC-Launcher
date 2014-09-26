@@ -335,7 +335,7 @@ Partial Public Class AppData
 
     Private columnid_AppType As Global.System.Data.DataColumn
 
-    Private columnStartWithXBMC As Global.System.Data.DataColumn
+    Private columnStartWithKodi As Global.System.Data.DataColumn
 
     Private columnKeepFocus As Global.System.Data.DataColumn
 
@@ -400,9 +400,9 @@ Partial Public Class AppData
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public ReadOnly Property StartWithXBMCColumn() As Global.System.Data.DataColumn
+    Public ReadOnly Property StartWithKodiColumn() As Global.System.Data.DataColumn
       Get
-        Return Me.columnStartWithXBMC
+        Return Me.columnStartWithKodi
       End Get
     End Property
 
@@ -451,9 +451,9 @@ Partial Public Class AppData
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Overloads Function AddAppRow(ByVal id_App As String, ByVal AppPath As String, ByVal parentAppTypeRowByFK_AppType_App As AppTypeRow, ByVal StartWithXBMC As Boolean, ByVal KeepFocus As Boolean) As AppRow
+    Public Overloads Function AddAppRow(ByVal id_App As String, ByVal AppPath As String, ByVal parentAppTypeRowByFK_AppType_App As AppTypeRow, ByVal StartWithKodi As Boolean, ByVal KeepFocus As Boolean) As AppRow
       Dim rowAppRow As AppRow = CType(Me.NewRow, AppRow)
-      Dim columnValuesArray() As Object = New Object() {id_App, AppPath, Nothing, StartWithXBMC, KeepFocus}
+      Dim columnValuesArray() As Object = New Object() {id_App, AppPath, Nothing, StartWithKodi, KeepFocus}
       If (Not (parentAppTypeRowByFK_AppType_App) Is Nothing) Then
         columnValuesArray(2) = parentAppTypeRowByFK_AppType_App(0)
       End If
@@ -488,7 +488,7 @@ Partial Public Class AppData
       Me.columnid_App = MyBase.Columns("id_App")
       Me.columnAppPath = MyBase.Columns("AppPath")
       Me.columnid_AppType = MyBase.Columns("id_AppType")
-      Me.columnStartWithXBMC = MyBase.Columns("StartWithXBMC")
+      Me.columnStartWithKodi = MyBase.Columns("StartWithKodi")
       Me.columnKeepFocus = MyBase.Columns("KeepFocus")
     End Sub
 
@@ -501,8 +501,8 @@ Partial Public Class AppData
       MyBase.Columns.Add(Me.columnAppPath)
       Me.columnid_AppType = New Global.System.Data.DataColumn("id_AppType", GetType(Short), Nothing, Global.System.Data.MappingType.Element)
       MyBase.Columns.Add(Me.columnid_AppType)
-      Me.columnStartWithXBMC = New Global.System.Data.DataColumn("StartWithXBMC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-      MyBase.Columns.Add(Me.columnStartWithXBMC)
+      Me.columnStartWithKodi = New Global.System.Data.DataColumn("StartWithKodi", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+      MyBase.Columns.Add(Me.columnStartWithKodi)
       Me.columnKeepFocus = New Global.System.Data.DataColumn("KeepFocus", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
       MyBase.Columns.Add(Me.columnKeepFocus)
       Me.Constraints.Add(New Global.System.Data.UniqueConstraint("AppKey1", New Global.System.Data.DataColumn() {Me.columnid_App}, True))
@@ -510,7 +510,7 @@ Partial Public Class AppData
       Me.columnid_App.Unique = True
       Me.columnAppPath.AllowDBNull = False
       Me.columnid_AppType.AllowDBNull = False
-      Me.columnStartWithXBMC.DefaultValue = CType(False, Boolean)
+      Me.columnStartWithKodi.DefaultValue = CType(False, Boolean)
       Me.columnKeepFocus.DefaultValue = CType(False, Boolean)
     End Sub
 
@@ -966,16 +966,16 @@ Partial Public Class AppData
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Property StartWithXBMC() As Boolean
+    Public Property StartWithKodi() As Boolean
       Get
         Try
-          Return CType(Me(Me.tableApp.StartWithXBMCColumn), Boolean)
+          Return CType(Me(Me.tableApp.StartWithKodiColumn), Boolean)
         Catch e As Global.System.InvalidCastException
-          Throw New Global.System.Data.StrongTypingException("The value for column 'StartWithXBMC' in table 'App' is DBNull.", e)
+          Throw New Global.System.Data.StrongTypingException("The value for column 'StartWithKodi' in table 'App' is DBNull.", e)
         End Try
       End Get
       Set(value As Boolean)
-        Me(Me.tableApp.StartWithXBMCColumn) = value
+        Me(Me.tableApp.StartWithKodiColumn) = value
       End Set
     End Property
 
@@ -1007,14 +1007,14 @@ Partial Public Class AppData
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Function IsStartWithXBMCNull() As Boolean
-      Return Me.IsNull(Me.tableApp.StartWithXBMCColumn)
+    Public Function IsStartWithKodiNull() As Boolean
+      Return Me.IsNull(Me.tableApp.StartWithKodiColumn)
     End Function
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Sub SetStartWithXBMCNull()
-      Me(Me.tableApp.StartWithXBMCColumn) = Global.System.Convert.DBNull
+    Public Sub SetStartWithKodiNull()
+      Me(Me.tableApp.StartWithKodiColumn) = Global.System.Convert.DBNull
     End Sub
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _

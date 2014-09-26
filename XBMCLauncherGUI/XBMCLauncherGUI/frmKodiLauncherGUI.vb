@@ -1,25 +1,25 @@
-﻿Public Class frmXBMCLauncherGUI
+﻿Public Class frmKodiLauncherGUI
 
-  Dim RegistrySettingsPath As String = "HKEY_CURRENT_USER\Software\XBMCLauncher"
+  Private RegistrySettingsPath As String = "HKEY_CURRENT_USER\Software\XBMCLauncher"
 
 #Region "FORM LOAD EVENTS"
 
-  Private Sub frmXBMCLauncherGUI_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+  Private Sub frmKodiLauncherGUI_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
     On Error GoTo err
 
-    'Startup Settings
+    ' Startup Settings
     Me.chkStartXBMCatWinLogon.Checked = My.Settings.StartXBMCatWinLogon
     Me.chkStartXBMCatWinResume.Checked = My.Settings.StartXBMCatWinResume
     Me.chkStartXBMCPortable.Checked = My.Settings.StartXBMCPortable
     Me.txtStartupDelay.Text = My.Settings.StartupDelay / 1000
 
-    'Focus Settings
+    ' Focus Settings
     Me.chkDisableFocusPermanently.Checked = My.Settings.DisableFocusPermanently
     Me.chkFocusOnce.Checked = My.Settings.FocusOnce
     Me.txtFocusDelay.Text = My.Settings.FocusDelay / 1000 ' Focus delay in seconds.
     'Me.chkFocusExternalPlayer.Checked = My.Settings.FocusExternalPlayer
 
-    'Exit Settings
+    ' Exit Settings
     Me.chkCloseXBMCatSleep.Checked = My.Settings.CloseXBMCatSleep
     Me.chkForceCloseXBMC.Checked = My.Settings.ForceCloseXBMC
     Me.chkStartExplorer.Checked = My.Settings.StartExplorer
@@ -40,13 +40,14 @@
       Me.rdHibernate.Checked = True
     End If
 
-    'XBMC Path Settings
+    ' XBMC Path Settings
 
     Me.lblXBMCPath.Text = ShrinkPathText(My.Settings.XBMC_Path, lblXBMCPath)
     Me.lblXBMConIMONPath.Text = ShrinkPathText(My.Settings.XBMConiMON_Path, lblXBMConIMONPath)
     Me.lbliMONManagerPath.Text = ShrinkPathText(My.Settings.iMON_Path, lbliMONManagerPath)
 
-    'External Players
+    ' External Players
+
 
     'Me.lblExtPlayer1.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "ExternalPlayer1_Path", ""), lblExtPlayer1)
     'Me.lblExtPlayer2.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "ExternalPlayer2_Path", ""), lblExtPlayer2)

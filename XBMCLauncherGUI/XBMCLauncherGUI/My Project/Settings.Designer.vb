@@ -267,11 +267,11 @@ Namespace My
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
     Friend Module MySettingsProperty
         
-        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.XBMCLauncherGUI.My.MySettings
-            Get
-                Return Global.XBMCLauncherGUI.My.MySettings.Default
-            End Get
-        End Property
+    <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")> _
+    Friend ReadOnly Property Settings() As Global.KodiLauncherGUI.My.MySettings
+      Get
+        Return Global.KodiLauncherGUI.My.MySettings.Default
+      End Get
+    End Property
     End Module
 End Namespace

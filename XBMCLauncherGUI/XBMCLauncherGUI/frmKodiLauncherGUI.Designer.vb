@@ -1,29 +1,29 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmXBMCLauncherGUI
-    Inherits System.Windows.Forms.Form
+Partial Class frmKodiLauncherGUI
+  Inherits System.Windows.Forms.Form
 
-    'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
-    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-        Try
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
-            End If
-        Finally
-            MyBase.Dispose(disposing)
-        End Try
-    End Sub
+  'Form overrides dispose to clean up the component list.
+  <System.Diagnostics.DebuggerNonUserCode()> _
+  Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+    Try
+      If disposing AndAlso components IsNot Nothing Then
+        components.Dispose()
+      End If
+    Finally
+      MyBase.Dispose(disposing)
+    End Try
+  End Sub
 
-    'Required by the Windows Form Designer
-    Private components As System.ComponentModel.IContainer
+  'Required by the Windows Form Designer
+  Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
-    Private Sub InitializeComponent()
+  'NOTE: The following procedure is required by the Windows Form Designer
+  'It can be modified using the Windows Form Designer.  
+  'Do not modify it using the code editor.
+  <System.Diagnostics.DebuggerStepThrough()> _
+  Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmXBMCLauncherGUI))
+    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmKodiLauncherGUI))
     Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
     Me.rdShellWindowsExplorer = New System.Windows.Forms.RadioButton()
     Me.rdShellXBMCLauncher = New System.Windows.Forms.RadioButton()
@@ -49,16 +49,9 @@ Partial Class frmXBMCLauncherGUI
     Me.btnSelectShell = New System.Windows.Forms.Button()
     Me.TabPage5 = New System.Windows.Forms.TabPage()
     Me.dgvApps = New System.Windows.Forms.DataGridView()
-    Me.colApplication = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.colStartWithXBMC = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-    Me.colPreventXBMCFocus = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-    Me.colDeleteApp = New System.Windows.Forms.DataGridViewButtonColumn()
     Me.btnAddExternalApp = New System.Windows.Forms.Button()
     Me.TabPage9 = New System.Windows.Forms.TabPage()
     Me.dgvExternalPlayers = New System.Windows.Forms.DataGridView()
-    Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-    Me.DataGridViewButtonColumn1 = New System.Windows.Forms.DataGridViewButtonColumn()
     Me.btnAddExternalPlayer = New System.Windows.Forms.Button()
     Me.TabPage4 = New System.Windows.Forms.TabPage()
     Me.lblXBMCPath = New System.Windows.Forms.Label()
@@ -82,6 +75,13 @@ Partial Class frmXBMCLauncherGUI
     Me.Label2 = New System.Windows.Forms.Label()
     Me.Label1 = New System.Windows.Forms.Label()
     Me.TabControl1 = New System.Windows.Forms.TabControl()
+    Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.colPlayerKeepFocus = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+    Me.DataGridViewButtonColumn1 = New System.Windows.Forms.DataGridViewButtonColumn()
+    Me.colApp = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.colStartWithXBMC = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+    Me.colAppKeepFocus = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+    Me.colDeleteApp = New System.Windows.Forms.DataGridViewButtonColumn()
     Me.TabPage6.SuspendLayout()
     Me.GroupBox3.SuspendLayout()
     Me.TabPage5.SuspendLayout()
@@ -119,10 +119,10 @@ Partial Class frmXBMCLauncherGUI
     Me.rdShellXBMCLauncher.AutoSize = True
     Me.rdShellXBMCLauncher.Location = New System.Drawing.Point(10, 60)
     Me.rdShellXBMCLauncher.Name = "rdShellXBMCLauncher"
-    Me.rdShellXBMCLauncher.Size = New System.Drawing.Size(110, 19)
+    Me.rdShellXBMCLauncher.Size = New System.Drawing.Size(101, 19)
     Me.rdShellXBMCLauncher.TabIndex = 1
     Me.rdShellXBMCLauncher.TabStop = True
-    Me.rdShellXBMCLauncher.Text = "XBMCLauncher"
+    Me.rdShellXBMCLauncher.Text = "KodiLauncher"
     Me.ToolTip1.SetToolTip(Me.rdShellXBMCLauncher, "Set XBMCLauncher as the shell.")
     Me.rdShellXBMCLauncher.UseVisualStyleBackColor = True
     '
@@ -143,10 +143,10 @@ Partial Class frmXBMCLauncherGUI
     Me.chkCloseXBMCatSleep.AutoSize = True
     Me.chkCloseXBMCatSleep.Location = New System.Drawing.Point(10, 20)
     Me.chkCloseXBMCatSleep.Name = "chkCloseXBMCatSleep"
-    Me.chkCloseXBMCatSleep.Size = New System.Drawing.Size(203, 19)
+    Me.chkCloseXBMCatSleep.Size = New System.Drawing.Size(194, 19)
     Me.chkCloseXBMCatSleep.TabIndex = 2
     Me.chkCloseXBMCatSleep.Tag = "CloseXBMCatSleep"
-    Me.chkCloseXBMCatSleep.Text = "Close XBMC on System Suspend"
+    Me.chkCloseXBMCatSleep.Text = "Close Kodi on System Suspend"
     Me.ToolTip1.SetToolTip(Me.chkCloseXBMCatSleep, "Force close XBMC during Sleep or Hibernation.")
     Me.chkCloseXBMCatSleep.UseVisualStyleBackColor = True
     '
@@ -155,10 +155,10 @@ Partial Class frmXBMCLauncherGUI
     Me.chkStartExplorer.AutoSize = True
     Me.chkStartExplorer.Location = New System.Drawing.Point(10, 60)
     Me.chkStartExplorer.Name = "chkStartExplorer"
-    Me.chkStartExplorer.Size = New System.Drawing.Size(278, 19)
+    Me.chkStartExplorer.Size = New System.Drawing.Size(269, 19)
     Me.chkStartExplorer.TabIndex = 3
     Me.chkStartExplorer.Tag = "StartExplorer"
-    Me.chkStartExplorer.Text = "Start Windows Explorer when XBMC is closed"
+    Me.chkStartExplorer.Text = "Start Windows Explorer when Kodi is closed"
     Me.ToolTip1.SetToolTip(Me.chkStartExplorer, "Start Explorer when XBMC is closed in shell mode.")
     Me.chkStartExplorer.UseVisualStyleBackColor = True
     '
@@ -167,10 +167,10 @@ Partial Class frmXBMCLauncherGUI
     Me.chkStartMetroUI.AutoSize = True
     Me.chkStartMetroUI.Location = New System.Drawing.Point(10, 100)
     Me.chkStartMetroUI.Name = "chkStartMetroUI"
-    Me.chkStartMetroUI.Size = New System.Drawing.Size(259, 19)
+    Me.chkStartMetroUI.Size = New System.Drawing.Size(250, 19)
     Me.chkStartMetroUI.TabIndex = 4
     Me.chkStartMetroUI.Tag = "StartMetroUI"
-    Me.chkStartMetroUI.Text = "Start Metro Start UI when XBMC is closed"
+    Me.chkStartMetroUI.Text = "Start Metro Start UI when Kodi is closed"
     Me.ToolTip1.SetToolTip(Me.chkStartMetroUI, "Start Metro UI when XBMC is closed.")
     Me.chkStartMetroUI.UseVisualStyleBackColor = True
     Me.chkStartMetroUI.Visible = False
@@ -220,10 +220,10 @@ Partial Class frmXBMCLauncherGUI
     Me.chkForceCloseXBMC.ForeColor = System.Drawing.Color.Black
     Me.chkForceCloseXBMC.Location = New System.Drawing.Point(10, 117)
     Me.chkForceCloseXBMC.Name = "chkForceCloseXBMC"
-    Me.chkForceCloseXBMC.Size = New System.Drawing.Size(126, 19)
+    Me.chkForceCloseXBMC.Size = New System.Drawing.Size(117, 19)
     Me.chkForceCloseXBMC.TabIndex = 6
     Me.chkForceCloseXBMC.Tag = "ForceCloseXBMC"
-    Me.chkForceCloseXBMC.Text = "Force Close XBMC"
+    Me.chkForceCloseXBMC.Text = "Force Close Kodi"
     Me.ToolTip1.SetToolTip(Me.chkForceCloseXBMC, "Applicable for the custom confluence skin only. XBMC will be force closed when th" & _
         "e shutown button is clicked.")
     Me.chkForceCloseXBMC.UseVisualStyleBackColor = True
@@ -265,10 +265,10 @@ Partial Class frmXBMCLauncherGUI
     Me.chkStartXBMCatWinLogon.AutoSize = True
     Me.chkStartXBMCatWinLogon.Location = New System.Drawing.Point(10, 20)
     Me.chkStartXBMCatWinLogon.Name = "chkStartXBMCatWinLogon"
-    Me.chkStartXBMCatWinLogon.Size = New System.Drawing.Size(213, 19)
+    Me.chkStartXBMCatWinLogon.Size = New System.Drawing.Size(204, 19)
     Me.chkStartXBMCatWinLogon.TabIndex = 0
     Me.chkStartXBMCatWinLogon.Tag = "StartXBMCatWinLogon"
-    Me.chkStartXBMCatWinLogon.Text = "Start XBMC when Windows starts"
+    Me.chkStartXBMCatWinLogon.Text = "Start Kodi when Windows starts"
     Me.ToolTip1.SetToolTip(Me.chkStartXBMCatWinLogon, "Start XBMC when XBMCLauncher starts at Windows logon.")
     Me.chkStartXBMCatWinLogon.UseVisualStyleBackColor = True
     '
@@ -277,10 +277,10 @@ Partial Class frmXBMCLauncherGUI
     Me.chkStartXBMCatWinResume.AutoSize = True
     Me.chkStartXBMCatWinResume.Location = New System.Drawing.Point(10, 60)
     Me.chkStartXBMCatWinResume.Name = "chkStartXBMCatWinResume"
-    Me.chkStartXBMCatWinResume.Size = New System.Drawing.Size(310, 19)
+    Me.chkStartXBMCatWinResume.Size = New System.Drawing.Size(301, 19)
     Me.chkStartXBMCatWinResume.TabIndex = 1
     Me.chkStartXBMCatWinResume.Tag = "StartXBMCatWinResume"
-    Me.chkStartXBMCatWinResume.Text = "Start XBMC when Windows resumes from Suspend"
+    Me.chkStartXBMCatWinResume.Text = "Start Kodi when Windows resumes from Suspend"
     Me.ToolTip1.SetToolTip(Me.chkStartXBMCatWinResume, "Start XBMC when resuming from Sleep or Hibernation.")
     Me.chkStartXBMCatWinResume.UseVisualStyleBackColor = True
     '
@@ -289,10 +289,10 @@ Partial Class frmXBMCLauncherGUI
     Me.chkStartXBMCPortable.AutoSize = True
     Me.chkStartXBMCPortable.Location = New System.Drawing.Point(10, 100)
     Me.chkStartXBMCPortable.Name = "chkStartXBMCPortable"
-    Me.chkStartXBMCPortable.Size = New System.Drawing.Size(189, 19)
+    Me.chkStartXBMCPortable.Size = New System.Drawing.Size(180, 19)
     Me.chkStartXBMCPortable.TabIndex = 2
     Me.chkStartXBMCPortable.Tag = "StartXBMCPortable"
-    Me.chkStartXBMCPortable.Text = "Start XBMC in Portable Mode"
+    Me.chkStartXBMCPortable.Text = "Start Kodi in Portable Mode"
     Me.ToolTip1.SetToolTip(Me.chkStartXBMCPortable, "Start XBMC with -P switch.")
     Me.chkStartXBMCPortable.UseVisualStyleBackColor = True
     '
@@ -368,40 +368,12 @@ Partial Class frmXBMCLauncherGUI
     Me.dgvApps.AllowUserToAddRows = False
     Me.dgvApps.AllowUserToDeleteRows = False
     Me.dgvApps.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-    Me.dgvApps.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colApplication, Me.colStartWithXBMC, Me.colPreventXBMCFocus, Me.colDeleteApp})
+    Me.dgvApps.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colApp, Me.colStartWithXBMC, Me.colAppKeepFocus, Me.colDeleteApp})
     Me.dgvApps.Location = New System.Drawing.Point(87, 6)
     Me.dgvApps.Name = "dgvApps"
     Me.dgvApps.RowHeadersVisible = False
     Me.dgvApps.Size = New System.Drawing.Size(705, 200)
     Me.dgvApps.TabIndex = 17
-    '
-    'colApplication
-    '
-    Me.colApplication.HeaderText = "Application"
-    Me.colApplication.Name = "colApplication"
-    Me.colApplication.ReadOnly = True
-    Me.colApplication.Width = 400
-    '
-    'colStartWithXBMC
-    '
-    Me.colStartWithXBMC.HeaderText = "Start with XBMCLauncher"
-    Me.colStartWithXBMC.Name = "colStartWithXBMC"
-    Me.colStartWithXBMC.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.colStartWithXBMC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-    '
-    'colPreventXBMCFocus
-    '
-    Me.colPreventXBMCFocus.HeaderText = "Prevent XBMC Focus"
-    Me.colPreventXBMCFocus.Name = "colPreventXBMCFocus"
-    Me.colPreventXBMCFocus.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.colPreventXBMCFocus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-    '
-    'colDeleteApp
-    '
-    Me.colDeleteApp.HeaderText = ""
-    Me.colDeleteApp.Name = "colDeleteApp"
-    Me.colDeleteApp.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-    Me.colDeleteApp.Text = "Clear"
     '
     'btnAddExternalApp
     '
@@ -429,34 +401,12 @@ Partial Class frmXBMCLauncherGUI
     Me.dgvExternalPlayers.AllowUserToAddRows = False
     Me.dgvExternalPlayers.AllowUserToDeleteRows = False
     Me.dgvExternalPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-    Me.dgvExternalPlayers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewCheckBoxColumn1, Me.DataGridViewButtonColumn1})
+    Me.dgvExternalPlayers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.colPlayerKeepFocus, Me.DataGridViewButtonColumn1})
     Me.dgvExternalPlayers.Location = New System.Drawing.Point(87, 6)
     Me.dgvExternalPlayers.Name = "dgvExternalPlayers"
     Me.dgvExternalPlayers.RowHeadersVisible = False
     Me.dgvExternalPlayers.Size = New System.Drawing.Size(705, 200)
     Me.dgvExternalPlayers.TabIndex = 22
-    '
-    'DataGridViewTextBoxColumn1
-    '
-    Me.DataGridViewTextBoxColumn1.HeaderText = "Player"
-    Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-    Me.DataGridViewTextBoxColumn1.ReadOnly = True
-    Me.DataGridViewTextBoxColumn1.Width = 400
-    '
-    'DataGridViewCheckBoxColumn1
-    '
-    Me.DataGridViewCheckBoxColumn1.HeaderText = "Focus External Player"
-    Me.DataGridViewCheckBoxColumn1.Name = "DataGridViewCheckBoxColumn1"
-    Me.DataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.DataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-    Me.DataGridViewCheckBoxColumn1.Width = 150
-    '
-    'DataGridViewButtonColumn1
-    '
-    Me.DataGridViewButtonColumn1.HeaderText = ""
-    Me.DataGridViewButtonColumn1.Name = "DataGridViewButtonColumn1"
-    Me.DataGridViewButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-    Me.DataGridViewButtonColumn1.Text = "Clear"
     '
     'btnAddExternalPlayer
     '
@@ -486,7 +436,7 @@ Partial Class frmXBMCLauncherGUI
     Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
     Me.TabPage4.Size = New System.Drawing.Size(800, 214)
     Me.TabPage4.TabIndex = 3
-    Me.TabPage4.Text = "XBMC Path"
+    Me.TabPage4.Text = "Kodi Path"
     Me.TabPage4.UseVisualStyleBackColor = True
     '
     'lblXBMCPath
@@ -591,9 +541,9 @@ Partial Class frmXBMCLauncherGUI
     Me.Label5.AutoSize = True
     Me.Label5.Location = New System.Drawing.Point(10, 20)
     Me.Label5.Name = "Label5"
-    Me.Label5.Size = New System.Drawing.Size(69, 15)
+    Me.Label5.Size = New System.Drawing.Size(60, 15)
     Me.Label5.TabIndex = 0
-    Me.Label5.Text = "XBMC Path"
+    Me.Label5.Text = "Kodi Path"
     '
     'TabPage3
     '
@@ -687,9 +637,9 @@ Partial Class frmXBMCLauncherGUI
     Me.Label1.AutoSize = True
     Me.Label1.Location = New System.Drawing.Point(10, 140)
     Me.Label1.Name = "Label1"
-    Me.Label1.Size = New System.Drawing.Size(134, 15)
+    Me.Label1.Size = New System.Drawing.Size(125, 15)
     Me.Label1.TabIndex = 3
-    Me.Label1.Text = "Delay XBMC startup by"
+    Me.Label1.Text = "Delay Kodi startup by"
     '
     'TabControl1
     '
@@ -708,7 +658,57 @@ Partial Class frmXBMCLauncherGUI
     Me.TabControl1.Size = New System.Drawing.Size(808, 242)
     Me.TabControl1.TabIndex = 0
     '
-    'frmXBMCLauncherGUI
+    'DataGridViewTextBoxColumn1
+    '
+    Me.DataGridViewTextBoxColumn1.HeaderText = "Player"
+    Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+    Me.DataGridViewTextBoxColumn1.ReadOnly = True
+    Me.DataGridViewTextBoxColumn1.Width = 400
+    '
+    'colPlayerKeepFocus
+    '
+    Me.colPlayerKeepFocus.HeaderText = "Keep Focus"
+    Me.colPlayerKeepFocus.Name = "colPlayerKeepFocus"
+    Me.colPlayerKeepFocus.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.colPlayerKeepFocus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+    Me.colPlayerKeepFocus.Width = 150
+    '
+    'DataGridViewButtonColumn1
+    '
+    Me.DataGridViewButtonColumn1.HeaderText = ""
+    Me.DataGridViewButtonColumn1.Name = "DataGridViewButtonColumn1"
+    Me.DataGridViewButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+    Me.DataGridViewButtonColumn1.Text = "Clear"
+    '
+    'colApp
+    '
+    Me.colApp.HeaderText = "Application"
+    Me.colApp.Name = "colApp"
+    Me.colApp.ReadOnly = True
+    Me.colApp.Width = 400
+    '
+    'colStartWithXBMC
+    '
+    Me.colStartWithXBMC.HeaderText = "Start with KodiLauncher"
+    Me.colStartWithXBMC.Name = "colStartWithXBMC"
+    Me.colStartWithXBMC.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.colStartWithXBMC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+    '
+    'colAppKeepFocus
+    '
+    Me.colAppKeepFocus.HeaderText = "Keep Focus"
+    Me.colAppKeepFocus.Name = "colAppKeepFocus"
+    Me.colAppKeepFocus.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.colAppKeepFocus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+    '
+    'colDeleteApp
+    '
+    Me.colDeleteApp.HeaderText = ""
+    Me.colDeleteApp.Name = "colDeleteApp"
+    Me.colDeleteApp.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+    Me.colDeleteApp.Text = "Clear"
+    '
+    'frmKodiLauncherGUI
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -718,9 +718,9 @@ Partial Class frmXBMCLauncherGUI
     Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
     Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
     Me.MaximizeBox = False
-    Me.Name = "frmXBMCLauncherGUI"
+    Me.Name = "frmKodiLauncherGUI"
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-    Me.Text = "XBMCLauncher GUI"
+    Me.Text = "Kodi Launcher GUI"
     Me.TopMost = True
     Me.TabPage6.ResumeLayout(False)
     Me.GroupBox3.ResumeLayout(False)
@@ -794,12 +794,12 @@ Partial Class frmXBMCLauncherGUI
   Friend WithEvents chkStartXBMCatWinLogon As System.Windows.Forms.CheckBox
   Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
   Friend WithEvents dgvExternalPlayers As System.Windows.Forms.DataGridView
-  Friend WithEvents colApplication As System.Windows.Forms.DataGridViewTextBoxColumn
+  Friend WithEvents colApp As System.Windows.Forms.DataGridViewTextBoxColumn
   Friend WithEvents colStartWithXBMC As System.Windows.Forms.DataGridViewCheckBoxColumn
-  Friend WithEvents colPreventXBMCFocus As System.Windows.Forms.DataGridViewCheckBoxColumn
+  Friend WithEvents colAppKeepFocus As System.Windows.Forms.DataGridViewCheckBoxColumn
   Friend WithEvents colDeleteApp As System.Windows.Forms.DataGridViewButtonColumn
   Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-  Friend WithEvents DataGridViewCheckBoxColumn1 As System.Windows.Forms.DataGridViewCheckBoxColumn
+  Friend WithEvents colPlayerKeepFocus As System.Windows.Forms.DataGridViewCheckBoxColumn
   Friend WithEvents DataGridViewButtonColumn1 As System.Windows.Forms.DataGridViewButtonColumn
 
 End Class

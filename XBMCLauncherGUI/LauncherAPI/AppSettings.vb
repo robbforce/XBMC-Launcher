@@ -1,4 +1,5 @@
-﻿Imports System.Xml.Serialization
+﻿Imports System.Drawing
+Imports System.Xml.Serialization
 Imports System.IO
 
 Namespace AppSettings

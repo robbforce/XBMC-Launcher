@@ -1,6 +1,13 @@
-﻿Public Class frmKodiLauncherGUI
+﻿Imports LauncherAPI
 
-  Private RegistrySettingsPath As String = "HKEY_CURRENT_USER\Software\XBMCLauncher"
+Public Class frmKodiLauncherGUI
+
+  Private m_RegistrySettingsPath As String = "HKEY_CURRENT_USER\Software\XBMCLauncher"
+  Private m_AppModel As New AppData
+  Private m_PlayerBinding As New BindingSource
+  Private m_PlayerTable As New DataTable
+  Private m_AppBinding As New BindingSource
+  Private m_AppTable As New DataTable
 
 #Region "FORM LOAD EVENTS"
 
@@ -41,12 +48,30 @@
     End If
 
     ' XBMC Path Settings
-
     Me.lblXBMCPath.Text = ShrinkPathText(My.Settings.XBMC_Path, lblXBMCPath)
     Me.lblXBMConIMONPath.Text = ShrinkPathText(My.Settings.XBMConiMON_Path, lblXBMConIMONPath)
     Me.lbliMONManagerPath.Text = ShrinkPathText(My.Settings.iMON_Path, lbliMONManagerPath)
 
-    ' External Players
+    ' Set up the grid view for external players.
+    Me.colPlayerId.DataPropertyName = m_AppModel.App.id_AppColumn.ColumnName
+    Me.colPlayerPath.DataPropertyName = m_AppModel.App.AppPathColumn.ColumnName
+    Me.colPlayerType.DataPropertyName = m_AppModel.App.id_AppTypeColumn.ColumnName
+    Me.colPlayerKeepFocus.DataPropertyName = m_AppModel.App.KeepFocusColumn.ColumnName
+
+    m_PlayerTable = SharedData.GetTable(SharedData.Apptype.Player)
+    Me.m_PlayerBinding.DataSource = m_PlayerTable
+    Me.dgvPlayers.DataSource = Me.m_PlayerBinding
+
+    ' Set up the grid view for external applications.
+    Me.colAppId.DataPropertyName = m_AppModel.App.id_AppColumn.ColumnName
+    Me.colAppPath.DataPropertyName = m_AppModel.App.AppPathColumn.ColumnName
+    Me.colAppType.DataPropertyName = m_AppModel.App.id_AppTypeColumn.ColumnName
+    Me.colAppKeepFocus.DataPropertyName = m_AppModel.App.KeepFocusColumn.ColumnName
+    Me.colStartWithKodi.DataPropertyName = m_AppModel.App.StartWithKodiColumn.ColumnName
+
+    m_AppTable = SharedData.GetTable(SharedData.Apptype.Application)
+    Me.m_AppBinding.DataSource = m_AppTable
+    Me.dgvApps.DataSource = Me.m_AppBinding
 
 
     'Me.lblExtPlayer1.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "ExternalPlayer1_Path", ""), lblExtPlayer1)
@@ -141,7 +166,7 @@ err:
 #Region "XBMC PATH SETTINGS"
 
   Private Sub btnSelectXBMCPath_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelectXBMCPath.Click
-    Dim xbmcpath As String = My.Computer.Registry.GetValue(RegistrySettingsPath, "XBMC_Path", "")
+    Dim xbmcpath As String = My.Computer.Registry.GetValue(m_RegistrySettingsPath, "XBMC_Path", "")
 
     ' If the setting doesn't exist, then default to the most likely location of the XBMC executable.
     If xbmcpath = "" Then xbmcpath = My.Computer.FileSystem.SpecialDirectories.ProgramFiles & "\XBMC\XBMC.exe"
@@ -156,13 +181,13 @@ err:
     If OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
       Application.DoEvents()
       xbmcpath = OpenFileDialog1.FileName
-      My.Computer.Registry.SetValue(RegistrySettingsPath, "XBMC_Path", xbmcpath, Microsoft.Win32.RegistryValueKind.String)
+      My.Computer.Registry.SetValue(m_RegistrySettingsPath, "XBMC_Path", xbmcpath, Microsoft.Win32.RegistryValueKind.String)
       Me.lblXBMCPath.Text = ShrinkPathText(xbmcpath, Me.lblXBMCPath)
     End If
   End Sub
 
   Private Sub btnSelectXBMConIMONPath_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelectXBMConIMONPath.Click
-    Dim xbmconimonpath As String = My.Computer.Registry.GetValue(RegistrySettingsPath, "XBMConiMON_Path", "")
+    Dim xbmconimonpath As String = My.Computer.Registry.GetValue(m_RegistrySettingsPath, "XBMConiMON_Path", "")
 
     ' If the setting doesn't exist, then default to the most likely location of the XBMC executable.
     If xbmconimonpath = "" Then xbmconimonpath = My.Computer.FileSystem.SpecialDirectories.ProgramFiles & "\XBMC\XBMC.exe"
@@ -177,13 +202,13 @@ err:
     If OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
       Application.DoEvents()
       xbmconimonpath = OpenFileDialog1.FileName
-      My.Computer.Registry.SetValue(RegistrySettingsPath, "XBMConiMON_Path", xbmconimonpath, Microsoft.Win32.RegistryValueKind.String)
+      My.Computer.Registry.SetValue(m_RegistrySettingsPath, "XBMConiMON_Path", xbmconimonpath, Microsoft.Win32.RegistryValueKind.String)
       Me.lblXBMConIMONPath.Text = ShrinkPathText(xbmconimonpath, Me.lblXBMConIMONPath)
     End If
   End Sub
 
   Private Sub btnSelectiMONManagerPath_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelectiMONManagerPath.Click
-    Dim imonpath As String = My.Computer.Registry.GetValue(RegistrySettingsPath, "iMON_Path", "")
+    Dim imonpath As String = My.Computer.Registry.GetValue(m_RegistrySettingsPath, "iMON_Path", "")
 
     ' If the setting doesn't exist, then default to the most likely location of the iMON executable.
     If imonpath = "" Then imonpath = My.Computer.FileSystem.SpecialDirectories.ProgramFiles & "\SoundGraph\iMON\iMON.exe"
@@ -198,23 +223,23 @@ err:
     If OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then 'if ok button clicked
       Application.DoEvents() 'first close the selection window
       imonpath = OpenFileDialog1.FileName
-      My.Computer.Registry.SetValue(RegistrySettingsPath, "iMON_Path", imonpath, Microsoft.Win32.RegistryValueKind.String)
+      My.Computer.Registry.SetValue(m_RegistrySettingsPath, "iMON_Path", imonpath, Microsoft.Win32.RegistryValueKind.String)
       Me.lbliMONManagerPath.Text = ShrinkPathText(imonpath, lbliMONManagerPath)
     End If
   End Sub
 
   Private Sub btnClearXBMCPath_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClearXBMCPath.Click
-    My.Computer.Registry.SetValue(RegistrySettingsPath, "XBMC_Path", "", Microsoft.Win32.RegistryValueKind.String)
+    My.Computer.Registry.SetValue(m_RegistrySettingsPath, "XBMC_Path", "", Microsoft.Win32.RegistryValueKind.String)
     Me.lblXBMCPath.Text = ""
   End Sub
 
   Private Sub btnClearXBMConIMONPath_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClearXBMConIMONPath.Click
-    My.Computer.Registry.SetValue(RegistrySettingsPath, "XBMConiMON_Path", "", Microsoft.Win32.RegistryValueKind.String)
+    My.Computer.Registry.SetValue(m_RegistrySettingsPath, "XBMConiMON_Path", "", Microsoft.Win32.RegistryValueKind.String)
     Me.lblXBMConIMONPath.Text = ""
   End Sub
 
   Private Sub btnCleariMONManagerPOath_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCleariMONManagerPOath.Click
-    My.Computer.Registry.SetValue(RegistrySettingsPath, "iMON_Path", "", Microsoft.Win32.RegistryValueKind.String)
+    My.Computer.Registry.SetValue(m_RegistrySettingsPath, "iMON_Path", "", Microsoft.Win32.RegistryValueKind.String)
     Me.lbliMONManagerPath.Text = ""
   End Sub
 
@@ -222,37 +247,44 @@ err:
 
 #Region "EXTERNAL PLAYERS"
 
-
-  'Private Sub chkFocusExternalPlayer_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
-  '  Dim chk As Integer
-  '  If Me.chkFocusExternalPlayer.Checked Then chk = 1 Else chk = 0
-  '  My.Computer.Registry.SetValue(RegistrySettingsPath, "FocusExternalPlayer", chk, Microsoft.Win32.RegistryValueKind.String)
-  'End Sub
-
-
   Private Sub btnAddExternalPlayer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddExternalPlayer.Click
     OpenFileDialog1.Filter = "Executable File|*.exe"
     OpenFileDialog1.Title = "Select External Player Path"
     OpenFileDialog1.AutoUpgradeEnabled = True
-    Dim externalplayerpath As String = My.Computer.Registry.GetValue(RegistrySettingsPath, "ExternalPlayer1_Path", "")
-    If externalplayerpath = "" Then
+    Dim strPath As String = My.Computer.Registry.GetValue(m_RegistrySettingsPath, "ExternalPlayer1_Path", "")
+    If strPath = "" Then
       OpenFileDialog1.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.ProgramFiles
     Else
-      OpenFileDialog1.InitialDirectory = My.Computer.FileSystem.GetParentPath(externalplayerpath)
+      OpenFileDialog1.InitialDirectory = My.Computer.FileSystem.GetParentPath(strPath)
     End If
-    OpenFileDialog1.FileName = My.Computer.FileSystem.GetName(externalplayerpath)
+    OpenFileDialog1.FileName = My.Computer.FileSystem.GetName(strPath)
 
     If OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then 'if ok button clicked
       Application.DoEvents() 'first close the selection window
-      externalplayerpath = OpenFileDialog1.FileName
-      My.Computer.Registry.SetValue(RegistrySettingsPath, "ExternalPlayer1_Path", externalplayerpath, Microsoft.Win32.RegistryValueKind.String)
-      'Me.lblExtPlayer1.Text = ShrinkPathText(externalplayerpath, lblExtPlayer1)
+      strPath = OpenFileDialog1.FileName
+
+      m_PlayerTable.Rows.Add(New Object() {1, strPath, SharedData.Apptype.Player, False})
+      'Dim tmpDataRow As DataRow = m_PlayerTable.NewRow()
+      'With tmpDataRow
+      '  .Item(m_AppModel.App.id_AppColumn.ColumnName) = 1
+      '  .Item(m_AppModel.App.AppPathColumn.ColumnName) = externalplayerpath
+      '  .Item(m_AppModel.App.id_AppTypeColumn.ColumnName) = SharedData.Apptype.Player
+      '  .Item(m_AppModel.App.KeepFocusColumn.ColumnName) = False
+      'End With
+      'm_PlayerTable.Rows.Add(tmpDataRow)
+
+      m_PlayerTable.AcceptChanges()
+      dgvPlayers.Refresh()
     End If
   End Sub
 
   Private Sub btnClearExternalPlayer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    My.Computer.Registry.SetValue(RegistrySettingsPath, "ExternalPlayer1_Path", "", Microsoft.Win32.RegistryValueKind.String)
+    My.Computer.Registry.SetValue(m_RegistrySettingsPath, "ExternalPlayer1_Path", "", Microsoft.Win32.RegistryValueKind.String)
     'Me.lblExtPlayer1.Text = ""
+  End Sub
+
+  Private Sub dgvPlayers_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvPlayers.CellContentClick
+    '
   End Sub
 
 #End Region
@@ -263,7 +295,7 @@ err:
     OpenFileDialog1.Filter = "Executable File|*.exe"
     OpenFileDialog1.Title = "Select External Application"
     OpenFileDialog1.AutoUpgradeEnabled = True
-    Dim AppPath As String = My.Computer.Registry.GetValue(RegistrySettingsPath, "App1_Path", "")
+    Dim AppPath As String = My.Computer.Registry.GetValue(m_RegistrySettingsPath, "App1_Path", "")
     If AppPath = "" Then
       OpenFileDialog1.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.ProgramFiles
     Else
@@ -275,28 +307,19 @@ err:
     If OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then 'if ok button clicked
       Application.DoEvents() 'first close the selection window
       AppPath = OpenFileDialog1.FileName
-      My.Computer.Registry.SetValue(RegistrySettingsPath, "App1_Path", AppPath, Microsoft.Win32.RegistryValueKind.String)
+      My.Computer.Registry.SetValue(m_RegistrySettingsPath, "App1_Path", AppPath, Microsoft.Win32.RegistryValueKind.String)
       'Me.lblApp1.Text = ShrinkPathText(AppPath, lblApp1)
     End If
   End Sub
 
-  'Private Sub chkStartExternalApps1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-  '  Dim chk As Integer
-  '  'If Me.chkStartExternalApps1.Checked Then chk = 1 Else chk = 0
-  '  My.Computer.Registry.SetValue(RegistrySettingsPath, "StartApps1", chk, Microsoft.Win32.RegistryValueKind.String)
-  'End Sub
-
-  'Private Sub chkPreventFocusExternalApps1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-  '  Dim chk As Integer
-  '  'If Me.chkPreventFocusExternalApps1.Checked Then chk = 1 Else chk = 0
-  '  My.Computer.Registry.SetValue(RegistrySettingsPath, "PreventFocusApps1", chk, Microsoft.Win32.RegistryValueKind.String)
-  'End Sub
-
-
   ' --------------------------------------        CLEAR EXTERNAL APPS --------------------------------------------------------
   Private Sub btnClearExternalApp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    My.Computer.Registry.SetValue(RegistrySettingsPath, "App1_Path", "", Microsoft.Win32.RegistryValueKind.String)
+    My.Computer.Registry.SetValue(m_RegistrySettingsPath, "App1_Path", "", Microsoft.Win32.RegistryValueKind.String)
     'Me.lblApp1.Text = ""
+  End Sub
+
+  Private Sub dgvApps_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvApps.CellContentClick
+    '
   End Sub
 #End Region
 
@@ -337,7 +360,7 @@ err:
   Private Sub EndApplication() Handles MyBase.FormClosed
     On Error Resume Next
     My.Settings.Save()
-    My.Computer.Registry.SetValue(RegistrySettingsPath, "ReloadXBMCLauncher", 1, Microsoft.Win32.RegistryValueKind.String)
+    My.Computer.Registry.SetValue(m_RegistrySettingsPath, "ReloadXBMCLauncher", 1, Microsoft.Win32.RegistryValueKind.String)
     Shell(My.Application.Info.DirectoryPath & "\XBMCLauncher.exe /r", AppWinStyle.Hide) 'Reload XBMCLauncher script.
   End Sub
 
@@ -366,5 +389,4 @@ err:
       Me.ToolTip1.SetToolTip(DirectCast(sender, Label), "")
     End If
   End Sub
-
 End Class

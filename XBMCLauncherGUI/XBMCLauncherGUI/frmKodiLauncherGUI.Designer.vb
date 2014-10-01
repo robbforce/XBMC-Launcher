@@ -51,7 +51,7 @@ Partial Class frmKodiLauncherGUI
     Me.dgvApps = New System.Windows.Forms.DataGridView()
     Me.btnAddExternalApp = New System.Windows.Forms.Button()
     Me.TabPage9 = New System.Windows.Forms.TabPage()
-    Me.dgvExternalPlayers = New System.Windows.Forms.DataGridView()
+    Me.dgvPlayers = New System.Windows.Forms.DataGridView()
     Me.btnAddExternalPlayer = New System.Windows.Forms.Button()
     Me.TabPage4 = New System.Windows.Forms.TabPage()
     Me.lblXBMCPath = New System.Windows.Forms.Label()
@@ -75,19 +75,23 @@ Partial Class frmKodiLauncherGUI
     Me.Label2 = New System.Windows.Forms.Label()
     Me.Label1 = New System.Windows.Forms.Label()
     Me.TabControl1 = New System.Windows.Forms.TabControl()
-    Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.colPlayerKeepFocus = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-    Me.DataGridViewButtonColumn1 = New System.Windows.Forms.DataGridViewButtonColumn()
-    Me.colApp = New System.Windows.Forms.DataGridViewTextBoxColumn()
-    Me.colStartWithXBMC = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+    Me.colAppId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.colAppPath = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.colAppType = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.colStartWithKodi = New System.Windows.Forms.DataGridViewCheckBoxColumn()
     Me.colAppKeepFocus = New System.Windows.Forms.DataGridViewCheckBoxColumn()
     Me.colDeleteApp = New System.Windows.Forms.DataGridViewButtonColumn()
+    Me.colPlayerId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.colPlayerPath = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.colPlayerType = New System.Windows.Forms.DataGridViewTextBoxColumn()
+    Me.colPlayerKeepFocus = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+    Me.colDeletePlayer = New System.Windows.Forms.DataGridViewButtonColumn()
     Me.TabPage6.SuspendLayout()
     Me.GroupBox3.SuspendLayout()
     Me.TabPage5.SuspendLayout()
     CType(Me.dgvApps, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TabPage9.SuspendLayout()
-    CType(Me.dgvExternalPlayers, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.dgvPlayers, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TabPage4.SuspendLayout()
     Me.TabPage3.SuspendLayout()
     Me.GroupBox1.SuspendLayout()
@@ -368,7 +372,7 @@ Partial Class frmKodiLauncherGUI
     Me.dgvApps.AllowUserToAddRows = False
     Me.dgvApps.AllowUserToDeleteRows = False
     Me.dgvApps.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-    Me.dgvApps.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colApp, Me.colStartWithXBMC, Me.colAppKeepFocus, Me.colDeleteApp})
+    Me.dgvApps.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colAppId, Me.colAppPath, Me.colAppType, Me.colStartWithKodi, Me.colAppKeepFocus, Me.colDeleteApp})
     Me.dgvApps.Location = New System.Drawing.Point(87, 6)
     Me.dgvApps.Name = "dgvApps"
     Me.dgvApps.RowHeadersVisible = False
@@ -386,7 +390,7 @@ Partial Class frmKodiLauncherGUI
     '
     'TabPage9
     '
-    Me.TabPage9.Controls.Add(Me.dgvExternalPlayers)
+    Me.TabPage9.Controls.Add(Me.dgvPlayers)
     Me.TabPage9.Controls.Add(Me.btnAddExternalPlayer)
     Me.TabPage9.Location = New System.Drawing.Point(4, 24)
     Me.TabPage9.Name = "TabPage9"
@@ -396,17 +400,17 @@ Partial Class frmKodiLauncherGUI
     Me.TabPage9.Text = "External Players"
     Me.TabPage9.UseVisualStyleBackColor = True
     '
-    'dgvExternalPlayers
+    'dgvPlayers
     '
-    Me.dgvExternalPlayers.AllowUserToAddRows = False
-    Me.dgvExternalPlayers.AllowUserToDeleteRows = False
-    Me.dgvExternalPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-    Me.dgvExternalPlayers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.colPlayerKeepFocus, Me.DataGridViewButtonColumn1})
-    Me.dgvExternalPlayers.Location = New System.Drawing.Point(87, 6)
-    Me.dgvExternalPlayers.Name = "dgvExternalPlayers"
-    Me.dgvExternalPlayers.RowHeadersVisible = False
-    Me.dgvExternalPlayers.Size = New System.Drawing.Size(705, 200)
-    Me.dgvExternalPlayers.TabIndex = 22
+    Me.dgvPlayers.AllowUserToAddRows = False
+    Me.dgvPlayers.AllowUserToDeleteRows = False
+    Me.dgvPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+    Me.dgvPlayers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colPlayerId, Me.colPlayerPath, Me.colPlayerType, Me.colPlayerKeepFocus, Me.colDeletePlayer})
+    Me.dgvPlayers.Location = New System.Drawing.Point(87, 6)
+    Me.dgvPlayers.Name = "dgvPlayers"
+    Me.dgvPlayers.RowHeadersVisible = False
+    Me.dgvPlayers.Size = New System.Drawing.Size(705, 200)
+    Me.dgvPlayers.TabIndex = 22
     '
     'btnAddExternalPlayer
     '
@@ -658,41 +662,31 @@ Partial Class frmKodiLauncherGUI
     Me.TabControl1.Size = New System.Drawing.Size(808, 242)
     Me.TabControl1.TabIndex = 0
     '
-    'DataGridViewTextBoxColumn1
+    'colAppId
     '
-    Me.DataGridViewTextBoxColumn1.HeaderText = "Player"
-    Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-    Me.DataGridViewTextBoxColumn1.ReadOnly = True
-    Me.DataGridViewTextBoxColumn1.Width = 400
+    Me.colAppId.HeaderText = "Id"
+    Me.colAppId.Name = "colAppId"
+    Me.colAppId.Visible = False
     '
-    'colPlayerKeepFocus
+    'colAppPath
     '
-    Me.colPlayerKeepFocus.HeaderText = "Keep Focus"
-    Me.colPlayerKeepFocus.Name = "colPlayerKeepFocus"
-    Me.colPlayerKeepFocus.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.colPlayerKeepFocus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-    Me.colPlayerKeepFocus.Width = 150
+    Me.colAppPath.HeaderText = "Application"
+    Me.colAppPath.Name = "colAppPath"
+    Me.colAppPath.ReadOnly = True
+    Me.colAppPath.Width = 385
     '
-    'DataGridViewButtonColumn1
+    'colAppType
     '
-    Me.DataGridViewButtonColumn1.HeaderText = ""
-    Me.DataGridViewButtonColumn1.Name = "DataGridViewButtonColumn1"
-    Me.DataGridViewButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-    Me.DataGridViewButtonColumn1.Text = "Clear"
+    Me.colAppType.HeaderText = "AppType"
+    Me.colAppType.Name = "colAppType"
+    Me.colAppType.Visible = False
     '
-    'colApp
+    'colStartWithKodi
     '
-    Me.colApp.HeaderText = "Application"
-    Me.colApp.Name = "colApp"
-    Me.colApp.ReadOnly = True
-    Me.colApp.Width = 400
-    '
-    'colStartWithXBMC
-    '
-    Me.colStartWithXBMC.HeaderText = "Start with KodiLauncher"
-    Me.colStartWithXBMC.Name = "colStartWithXBMC"
-    Me.colStartWithXBMC.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-    Me.colStartWithXBMC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+    Me.colStartWithKodi.HeaderText = "Start with KodiLauncher"
+    Me.colStartWithKodi.Name = "colStartWithKodi"
+    Me.colStartWithKodi.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.colStartWithKodi.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
     '
     'colAppKeepFocus
     '
@@ -707,6 +701,40 @@ Partial Class frmKodiLauncherGUI
     Me.colDeleteApp.Name = "colDeleteApp"
     Me.colDeleteApp.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
     Me.colDeleteApp.Text = "Clear"
+    '
+    'colPlayerId
+    '
+    Me.colPlayerId.HeaderText = "Id"
+    Me.colPlayerId.Name = "colPlayerId"
+    Me.colPlayerId.Visible = False
+    '
+    'colPlayerPath
+    '
+    Me.colPlayerPath.HeaderText = "Player"
+    Me.colPlayerPath.Name = "colPlayerPath"
+    Me.colPlayerPath.ReadOnly = True
+    Me.colPlayerPath.Width = 425
+    '
+    'colPlayerType
+    '
+    Me.colPlayerType.HeaderText = "AppType"
+    Me.colPlayerType.Name = "colPlayerType"
+    Me.colPlayerType.Visible = False
+    '
+    'colPlayerKeepFocus
+    '
+    Me.colPlayerKeepFocus.HeaderText = "Keep Focus"
+    Me.colPlayerKeepFocus.Name = "colPlayerKeepFocus"
+    Me.colPlayerKeepFocus.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+    Me.colPlayerKeepFocus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+    Me.colPlayerKeepFocus.Width = 150
+    '
+    'colDeletePlayer
+    '
+    Me.colDeletePlayer.HeaderText = ""
+    Me.colDeletePlayer.Name = "colDeletePlayer"
+    Me.colDeletePlayer.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+    Me.colDeletePlayer.Text = "Clear"
     '
     'frmKodiLauncherGUI
     '
@@ -728,7 +756,7 @@ Partial Class frmKodiLauncherGUI
     Me.TabPage5.ResumeLayout(False)
     CType(Me.dgvApps, System.ComponentModel.ISupportInitialize).EndInit()
     Me.TabPage9.ResumeLayout(False)
-    CType(Me.dgvExternalPlayers, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.dgvPlayers, System.ComponentModel.ISupportInitialize).EndInit()
     Me.TabPage4.ResumeLayout(False)
     Me.TabPage4.PerformLayout()
     Me.TabPage3.ResumeLayout(False)
@@ -793,13 +821,17 @@ Partial Class frmKodiLauncherGUI
   Friend WithEvents chkStartXBMCatWinResume As System.Windows.Forms.CheckBox
   Friend WithEvents chkStartXBMCatWinLogon As System.Windows.Forms.CheckBox
   Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
-  Friend WithEvents dgvExternalPlayers As System.Windows.Forms.DataGridView
-  Friend WithEvents colApp As System.Windows.Forms.DataGridViewTextBoxColumn
-  Friend WithEvents colStartWithXBMC As System.Windows.Forms.DataGridViewCheckBoxColumn
+  Friend WithEvents dgvPlayers As System.Windows.Forms.DataGridView
+  Friend WithEvents colAppId As System.Windows.Forms.DataGridViewTextBoxColumn
+  Friend WithEvents colAppPath As System.Windows.Forms.DataGridViewTextBoxColumn
+  Friend WithEvents colAppType As System.Windows.Forms.DataGridViewTextBoxColumn
+  Friend WithEvents colStartWithKodi As System.Windows.Forms.DataGridViewCheckBoxColumn
   Friend WithEvents colAppKeepFocus As System.Windows.Forms.DataGridViewCheckBoxColumn
   Friend WithEvents colDeleteApp As System.Windows.Forms.DataGridViewButtonColumn
-  Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
+  Friend WithEvents colPlayerId As System.Windows.Forms.DataGridViewTextBoxColumn
+  Friend WithEvents colPlayerPath As System.Windows.Forms.DataGridViewTextBoxColumn
+  Friend WithEvents colPlayerType As System.Windows.Forms.DataGridViewTextBoxColumn
   Friend WithEvents colPlayerKeepFocus As System.Windows.Forms.DataGridViewCheckBoxColumn
-  Friend WithEvents DataGridViewButtonColumn1 As System.Windows.Forms.DataGridViewButtonColumn
+  Friend WithEvents colDeletePlayer As System.Windows.Forms.DataGridViewButtonColumn
 
 End Class

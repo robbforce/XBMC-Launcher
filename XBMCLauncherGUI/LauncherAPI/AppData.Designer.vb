@@ -16,20 +16,20 @@ Option Explicit On
 '''<summary>
 '''Represents a strongly typed in-memory cache of data.
 '''</summary>
-<Global.System.Serializable(), _
- Global.System.ComponentModel.DesignerCategoryAttribute("code"), _
- Global.System.ComponentModel.ToolboxItem(True), _
- Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema"), _
- Global.System.Xml.Serialization.XmlRootAttribute("AppData"), _
- Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")> _
+<Global.System.Serializable(),  _
+ Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+ Global.System.ComponentModel.ToolboxItem(true),  _
+ Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema"),  _
+ Global.System.Xml.Serialization.XmlRootAttribute("AppData"),  _
+ Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")>  _
 Partial Public Class AppData
-  Inherits Global.System.Data.DataSet
-
-  Private tableApp As AppDataTable
-
-  Private tableAppType As AppTypeDataTable
-
-  Private relationFK_AppType_App As Global.System.Data.DataRelation
+    Inherits Global.System.Data.DataSet
+    
+    Private tableApp As AppDataTable
+    
+    Private tableAppType As AppTypeDataTable
+    
+  Private relationAppType_App As Global.System.Data.DataRelation
 
   Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
 
@@ -220,7 +220,7 @@ Partial Public Class AppData
         Me.tableAppType.InitVars()
       End If
     End If
-    Me.relationFK_AppType_App = Me.Relations("FK_AppType_App")
+    Me.relationAppType_App = Me.Relations("AppType_App")
   End Sub
 
   <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
@@ -235,14 +235,8 @@ Partial Public Class AppData
     MyBase.Tables.Add(Me.tableApp)
     Me.tableAppType = New AppTypeDataTable()
     MyBase.Tables.Add(Me.tableAppType)
-    Dim fkc As Global.System.Data.ForeignKeyConstraint
-    fkc = New Global.System.Data.ForeignKeyConstraint("FK_AppType_App", New Global.System.Data.DataColumn() {Me.tableAppType.id_AppTypeColumn}, New Global.System.Data.DataColumn() {Me.tableApp.id_AppTypeColumn})
-    Me.tableApp.Constraints.Add(fkc)
-    fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
-    fkc.DeleteRule = Global.System.Data.Rule.Cascade
-    fkc.UpdateRule = Global.System.Data.Rule.Cascade
-    Me.relationFK_AppType_App = New Global.System.Data.DataRelation("FK_AppType_App", New Global.System.Data.DataColumn() {Me.tableAppType.id_AppTypeColumn}, New Global.System.Data.DataColumn() {Me.tableApp.id_AppTypeColumn}, False)
-    Me.Relations.Add(Me.relationFK_AppType_App)
+    Me.relationAppType_App = New Global.System.Data.DataRelation("AppType_App", New Global.System.Data.DataColumn() {Me.tableAppType.id_AppTypeColumn}, New Global.System.Data.DataColumn() {Me.tableApp.id_AppTypeColumn}, False)
+    Me.Relations.Add(Me.relationAppType_App)
   End Sub
 
   <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
@@ -451,11 +445,11 @@ Partial Public Class AppData
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Overloads Function AddAppRow(ByVal id_App As String, ByVal AppPath As String, ByVal parentAppTypeRowByFK_AppType_App As AppTypeRow, ByVal StartWithKodi As Boolean, ByVal KeepFocus As Boolean) As AppRow
+    Public Overloads Function AddAppRow(ByVal id_App As Integer, ByVal AppPath As String, ByVal parentAppTypeRowByAppType_App As AppTypeRow, ByVal StartWithKodi As Boolean, ByVal KeepFocus As Boolean) As AppRow
       Dim rowAppRow As AppRow = CType(Me.NewRow, AppRow)
       Dim columnValuesArray() As Object = New Object() {id_App, AppPath, Nothing, StartWithKodi, KeepFocus}
-      If (Not (parentAppTypeRowByFK_AppType_App) Is Nothing) Then
-        columnValuesArray(2) = parentAppTypeRowByFK_AppType_App(0)
+      If (Not (parentAppTypeRowByAppType_App) Is Nothing) Then
+        columnValuesArray(2) = parentAppTypeRowByAppType_App(0)
       End If
       rowAppRow.ItemArray = columnValuesArray
       Me.Rows.Add(rowAppRow)
@@ -464,7 +458,7 @@ Partial Public Class AppData
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Function FindByid_App(ByVal id_App As String) As AppRow
+    Public Function FindByid_App(ByVal id_App As Integer) As AppRow
       Return CType(Me.Rows.Find(New Object() {id_App}), AppRow)
     End Function
 
@@ -495,11 +489,11 @@ Partial Public Class AppData
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Private Sub InitClass()
-      Me.columnid_App = New Global.System.Data.DataColumn("id_App", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+      Me.columnid_App = New Global.System.Data.DataColumn("id_App", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
       MyBase.Columns.Add(Me.columnid_App)
       Me.columnAppPath = New Global.System.Data.DataColumn("AppPath", GetType(String), Nothing, Global.System.Data.MappingType.Element)
       MyBase.Columns.Add(Me.columnAppPath)
-      Me.columnid_AppType = New Global.System.Data.DataColumn("id_AppType", GetType(Short), Nothing, Global.System.Data.MappingType.Element)
+      Me.columnid_AppType = New Global.System.Data.DataColumn("id_AppType", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
       MyBase.Columns.Add(Me.columnid_AppType)
       Me.columnStartWithKodi = New Global.System.Data.DataColumn("StartWithKodi", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
       MyBase.Columns.Add(Me.columnStartWithKodi)
@@ -741,7 +735,7 @@ Partial Public Class AppData
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Overloads Function AddAppTypeRow(ByVal id_AppType As Short, ByVal AppTypeName As String) As AppTypeRow
+    Public Overloads Function AddAppTypeRow(ByVal id_AppType As Integer, ByVal AppTypeName As String) As AppTypeRow
       Dim rowAppTypeRow As AppTypeRow = CType(Me.NewRow, AppTypeRow)
       Dim columnValuesArray() As Object = New Object() {id_AppType, AppTypeName}
       rowAppTypeRow.ItemArray = columnValuesArray
@@ -751,7 +745,7 @@ Partial Public Class AppData
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Function FindByid_AppType(ByVal id_AppType As Short) As AppTypeRow
+    Public Function FindByid_AppType(ByVal id_AppType As Integer) As AppTypeRow
       Return CType(Me.Rows.Find(New Object() {id_AppType}), AppTypeRow)
     End Function
 
@@ -779,7 +773,7 @@ Partial Public Class AppData
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Private Sub InitClass()
-      Me.columnid_AppType = New Global.System.Data.DataColumn("id_AppType", GetType(Short), Nothing, Global.System.Data.MappingType.Element)
+      Me.columnid_AppType = New Global.System.Data.DataColumn("id_AppType", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
       MyBase.Columns.Add(Me.columnid_AppType)
       Me.columnAppTypeName = New Global.System.Data.DataColumn("AppTypeName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
       MyBase.Columns.Add(Me.columnAppTypeName)
@@ -933,11 +927,11 @@ Partial Public Class AppData
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Property id_App() As String
+    Public Property id_App() As Integer
       Get
-        Return CType(Me(Me.tableApp.id_AppColumn), String)
+        Return CType(Me(Me.tableApp.id_AppColumn), Integer)
       End Get
-      Set(value As String)
+      Set(value As Integer)
         Me(Me.tableApp.id_AppColumn) = value
       End Set
     End Property
@@ -955,11 +949,11 @@ Partial Public Class AppData
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Property id_AppType() As Short
+    Public Property id_AppType() As Integer
       Get
-        Return CType(Me(Me.tableApp.id_AppTypeColumn), Short)
+        Return CType(Me(Me.tableApp.id_AppTypeColumn), Integer)
       End Get
-      Set(value As Short)
+      Set(value As Integer)
         Me(Me.tableApp.id_AppTypeColumn) = value
       End Set
     End Property
@@ -998,10 +992,10 @@ Partial Public Class AppData
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Property AppTypeRow() As AppTypeRow
       Get
-        Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_AppType_App")), AppTypeRow)
+        Return CType(Me.GetParentRow(Me.Table.ParentRelations("AppType_App")), AppTypeRow)
       End Get
       Set(value As AppTypeRow)
-        Me.SetParentRow(value, Me.Table.ParentRelations("FK_AppType_App"))
+        Me.SetParentRow(value, Me.Table.ParentRelations("AppType_App"))
       End Set
     End Property
 
@@ -1047,11 +1041,11 @@ Partial Public Class AppData
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Property id_AppType() As Short
+    Public Property id_AppType() As Integer
       Get
-        Return CType(Me(Me.tableAppType.id_AppTypeColumn), Short)
+        Return CType(Me(Me.tableAppType.id_AppTypeColumn), Integer)
       End Get
-      Set(value As Short)
+      Set(value As Integer)
         Me(Me.tableAppType.id_AppTypeColumn) = value
       End Set
     End Property
@@ -1070,83 +1064,83 @@ Partial Public Class AppData
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Function GetAppRows() As AppRow()
-      If (Me.Table.ChildRelations("FK_AppType_App") Is Nothing) Then
+      If (Me.Table.ChildRelations("AppType_App") Is Nothing) Then
         Return New AppRow(-1) {}
       Else
-        Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_AppType_App")), AppRow())
+        Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("AppType_App")), AppRow())
       End If
     End Function
   End Class
-
-  '''<summary>
-  '''Row event argument class
-  '''</summary>
-  <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-  Public Class AppRowChangeEvent
-    Inherits Global.System.EventArgs
-
-    Private eventRow As AppRow
-
-    Private eventAction As Global.System.Data.DataRowAction
-
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Sub New(ByVal row As AppRow, ByVal action As Global.System.Data.DataRowAction)
-      MyBase.New()
-      Me.eventRow = row
-      Me.eventAction = action
-    End Sub
-
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public ReadOnly Property Row() As AppRow
-      Get
-        Return Me.eventRow
-      End Get
-    End Property
-
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-      Get
-        Return Me.eventAction
-      End Get
-    End Property
-  End Class
-
-  '''<summary>
-  '''Row event argument class
-  '''</summary>
-  <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-  Public Class AppTypeRowChangeEvent
-    Inherits Global.System.EventArgs
-
-    Private eventRow As AppTypeRow
-
-    Private eventAction As Global.System.Data.DataRowAction
-
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Sub New(ByVal row As AppTypeRow, ByVal action As Global.System.Data.DataRowAction)
-      MyBase.New()
-      Me.eventRow = row
-      Me.eventAction = action
-    End Sub
-
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public ReadOnly Property Row() As AppTypeRow
-      Get
-        Return Me.eventRow
-      End Get
-    End Property
-
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-      Get
-        Return Me.eventAction
-      End Get
-    End Property
-  End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Class AppRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As AppRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New(ByVal row As AppRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Row() As AppRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Class AppTypeRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As AppTypeRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New(ByVal row As AppTypeRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Row() As AppTypeRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
 End Class

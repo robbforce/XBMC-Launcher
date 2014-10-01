@@ -96,6 +96,7 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSettings.vb" />
     <Compile Include="frmKodiLauncherGUI.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Settings.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LauncherAPI\LauncherAPI.vbproj">
+      <Project>{56bd2e19-42da-4fb8-a9ae-843474f32bd1}</Project>
+      <Name>LauncherAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

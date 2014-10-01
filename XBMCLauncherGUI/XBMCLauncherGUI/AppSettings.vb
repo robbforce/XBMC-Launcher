@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing
 Imports System.Xml.Serialization
 Imports System.IO
+Imports LauncherAPI
 
 Namespace AppSettings
 
@@ -39,6 +40,7 @@ Namespace My
 
     Private strAppFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) & "\" & My.Application.Info.Title
     Private strConfigFile As String = strAppFolder & "\" & "settings.xml"
+    Private strAppDataFile As String = strAppFolder & "\" & "appdata.xml"
 
     Public Sub userOverride_SettingsLoaded(ByVal sender As Object, ByVal e As System.Configuration.SettingsLoadedEventArgs) Handles Me.SettingsLoaded
       If FileIO.FileSystem.FileExists(strConfigFile) Then
@@ -83,6 +85,9 @@ Namespace My
 
         End Try
       End If
+
+      ' Try to read in the app data.
+      SharedData.ReadDatasetFromXML(strAppDataFile)
     End Sub
 
     Private Sub userOverride_SettingsSaving(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles Me.SettingsSaving
@@ -125,6 +130,9 @@ Namespace My
       Dim tw As TextWriter = New StreamWriter(strConfigFile)
       serializer.Serialize(tw, clssettings)
       tw.Close()
+
+      ' Now try to save the app data to a separate xml file.
+      SharedData.SaveDatasetToXML(strAppDataFile)
     End Sub
   End Class
 End Namespace

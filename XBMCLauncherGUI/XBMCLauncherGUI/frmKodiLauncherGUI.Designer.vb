@@ -376,6 +376,7 @@ Partial Class frmKodiLauncherGUI
     Me.dgvApps.Location = New System.Drawing.Point(87, 6)
     Me.dgvApps.Name = "dgvApps"
     Me.dgvApps.RowHeadersVisible = False
+    Me.dgvApps.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
     Me.dgvApps.Size = New System.Drawing.Size(705, 200)
     Me.dgvApps.TabIndex = 17
     '
@@ -409,6 +410,7 @@ Partial Class frmKodiLauncherGUI
     Me.dgvPlayers.Location = New System.Drawing.Point(87, 6)
     Me.dgvPlayers.Name = "dgvPlayers"
     Me.dgvPlayers.RowHeadersVisible = False
+    Me.dgvPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
     Me.dgvPlayers.Size = New System.Drawing.Size(705, 200)
     Me.dgvPlayers.TabIndex = 22
     '
@@ -700,7 +702,8 @@ Partial Class frmKodiLauncherGUI
     Me.colDeleteApp.HeaderText = ""
     Me.colDeleteApp.Name = "colDeleteApp"
     Me.colDeleteApp.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-    Me.colDeleteApp.Text = "Clear"
+    Me.colDeleteApp.Text = "Delete"
+    Me.colDeleteApp.UseColumnTextForButtonValue = True
     '
     'colPlayerId
     '
@@ -734,7 +737,8 @@ Partial Class frmKodiLauncherGUI
     Me.colDeletePlayer.HeaderText = ""
     Me.colDeletePlayer.Name = "colDeletePlayer"
     Me.colDeletePlayer.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-    Me.colDeletePlayer.Text = "Clear"
+    Me.colDeletePlayer.Text = "Delete"
+    Me.colDeletePlayer.UseColumnTextForButtonValue = True
     '
     'frmKodiLauncherGUI
     '

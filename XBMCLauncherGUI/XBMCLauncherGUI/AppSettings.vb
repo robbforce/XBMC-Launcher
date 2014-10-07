@@ -56,6 +56,7 @@ Namespace My
 
             Try
               If TypeOf Item.Value Is System.Array Then
+                ' Put custom data type handlers here.
                 If TypeOf Item.Value(0) Is System.Xml.XmlAttribute Then
                   Dim ValueType As System.Xml.XmlAttribute = Item.Value(0)
 

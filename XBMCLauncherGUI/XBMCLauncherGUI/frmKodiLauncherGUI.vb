@@ -3,7 +3,6 @@
 Public Class frmKodiLauncherGUI
 
   Private m_RegistrySettingsPath As String = "HKEY_CURRENT_USER\Software\XBMCLauncher"
-  Private m_AppModel As New AppData
   Private m_PlayerBinding As New BindingSource
   Private m_PlayerTable As New DataTable
   Private m_AppBinding As New BindingSource
@@ -24,7 +23,6 @@ Public Class frmKodiLauncherGUI
     Me.chkDisableFocusPermanently.Checked = My.Settings.DisableFocusPermanently
     Me.chkFocusOnce.Checked = My.Settings.FocusOnce
     Me.txtFocusDelay.Text = My.Settings.FocusDelay / 1000 ' Focus delay in seconds.
-    'Me.chkFocusExternalPlayer.Checked = My.Settings.FocusExternalPlayer
 
     ' Exit Settings
     Me.chkCloseXBMCatSleep.Checked = My.Settings.CloseXBMCatSleep
@@ -53,56 +51,25 @@ Public Class frmKodiLauncherGUI
     Me.lbliMONManagerPath.Text = ShrinkPathText(My.Settings.iMON_Path, lbliMONManagerPath)
 
     ' Set up the grid view for external players.
-    Me.colPlayerId.DataPropertyName = m_AppModel.App.id_AppColumn.ColumnName
-    Me.colPlayerPath.DataPropertyName = m_AppModel.App.AppPathColumn.ColumnName
-    Me.colPlayerType.DataPropertyName = m_AppModel.App.id_AppTypeColumn.ColumnName
-    Me.colPlayerKeepFocus.DataPropertyName = m_AppModel.App.KeepFocusColumn.ColumnName
+    Me.colPlayerId.DataPropertyName = SharedData.AppDataset.App.id_AppColumn.ColumnName
+    Me.colPlayerPath.DataPropertyName = SharedData.AppDataset.App.AppPathColumn.ColumnName
+    Me.colPlayerType.DataPropertyName = SharedData.AppDataset.App.id_AppTypeColumn.ColumnName
+    Me.colPlayerKeepFocus.DataPropertyName = SharedData.AppDataset.App.KeepFocusColumn.ColumnName
 
     m_PlayerTable = SharedData.GetTable(SharedData.Apptype.Player)
     Me.m_PlayerBinding.DataSource = m_PlayerTable
     Me.dgvPlayers.DataSource = Me.m_PlayerBinding
 
     ' Set up the grid view for external applications.
-    Me.colAppId.DataPropertyName = m_AppModel.App.id_AppColumn.ColumnName
-    Me.colAppPath.DataPropertyName = m_AppModel.App.AppPathColumn.ColumnName
-    Me.colAppType.DataPropertyName = m_AppModel.App.id_AppTypeColumn.ColumnName
-    Me.colAppKeepFocus.DataPropertyName = m_AppModel.App.KeepFocusColumn.ColumnName
-    Me.colStartWithKodi.DataPropertyName = m_AppModel.App.StartWithKodiColumn.ColumnName
+    Me.colAppId.DataPropertyName = SharedData.AppDataset.App.id_AppColumn.ColumnName
+    Me.colAppPath.DataPropertyName = SharedData.AppDataset.App.AppPathColumn.ColumnName
+    Me.colAppType.DataPropertyName = SharedData.AppDataset.App.id_AppTypeColumn.ColumnName
+    Me.colAppKeepFocus.DataPropertyName = SharedData.AppDataset.App.KeepFocusColumn.ColumnName
+    Me.colStartWithKodi.DataPropertyName = SharedData.AppDataset.App.StartWithKodiColumn.ColumnName
 
     m_AppTable = SharedData.GetTable(SharedData.Apptype.Application)
     Me.m_AppBinding.DataSource = m_AppTable
     Me.dgvApps.DataSource = Me.m_AppBinding
-
-
-    'Me.lblExtPlayer1.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "ExternalPlayer1_Path", ""), lblExtPlayer1)
-    'Me.lblExtPlayer2.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "ExternalPlayer2_Path", ""), lblExtPlayer2)
-    'Me.lblExtPlayer3.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "ExternalPlayer3_Path", ""), lblExtPlayer3)
-    'Me.lblExtPlayer4.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "ExternalPlayer4_Path", ""), lblExtPlayer4)
-
-    'Me.chkFocusExternalPlayer.Checked = My.Computer.Registry.GetValue(RegistrySettingsPath, "FocusExternalPlayer", "0")
-
-
-    'EXTERNAL APPS
-
-    'Me.lblApp1.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "App1_Path", ""), lblApp1)
-    'Me.lblApp2.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "App2_Path", ""), lblApp2)
-    'Me.lblApp3.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "App3_Path", ""), lblApp3)
-    'Me.lblApp4.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "App4_Path", ""), lblApp4)
-    'Me.lblApp5.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "App5_Path", ""), lblApp5)
-    'Me.lblApp6.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "App6_Path", ""), lblApp6)
-    'Me.lblApp7.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "App7_Path", ""), lblApp7)
-    'Me.lblApp8.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "App8_Path", ""), lblApp8)
-    'Me.lblApp9.Text = ShrinkPathText(My.Computer.Registry.GetValue(RegistrySettingsPath, "App9_Path", ""), lblApp9)
-
-    'Me.chkStartExternalApps1.Checked = My.Computer.Registry.GetValue(RegistrySettingsPath, "StartApps1", "0")
-    'Me.chkStartExternalApps2.Checked = My.Computer.Registry.GetValue(RegistrySettingsPath, "StartApps2", "0")
-    'Me.chkStartExternalApps3.Checked = My.Computer.Registry.GetValue(RegistrySettingsPath, "StartApps3", "0")
-
-    'Me.chkPreventFocusExternalApps1.Checked = My.Computer.Registry.GetValue(RegistrySettingsPath, "PreventFocusApps1", "0")
-    'Me.chkPreventFocusExternalApps2.Checked = My.Computer.Registry.GetValue(RegistrySettingsPath, "PreventFocusApps2", "0")
-    'Me.chkPreventFocusExternalApps3.Checked = My.Computer.Registry.GetValue(RegistrySettingsPath, "PreventFocusApps3", "0")
-
-
 
     ' Shell settings
     Me.lblShell.Text = ""
@@ -263,28 +230,17 @@ err:
       Application.DoEvents() 'first close the selection window
       strPath = OpenFileDialog1.FileName
 
-      m_PlayerTable.Rows.Add(New Object() {1, strPath, SharedData.Apptype.Player, False})
-      'Dim tmpDataRow As DataRow = m_PlayerTable.NewRow()
-      'With tmpDataRow
-      '  .Item(m_AppModel.App.id_AppColumn.ColumnName) = 1
-      '  .Item(m_AppModel.App.AppPathColumn.ColumnName) = externalplayerpath
-      '  .Item(m_AppModel.App.id_AppTypeColumn.ColumnName) = SharedData.Apptype.Player
-      '  .Item(m_AppModel.App.KeepFocusColumn.ColumnName) = False
-      'End With
-      'm_PlayerTable.Rows.Add(tmpDataRow)
-
-      m_PlayerTable.AcceptChanges()
+      ' Default the id to 0 because the datatable will set the id automatically when records are inserted into the table later.
+      m_PlayerTable.Rows.Add(New Object() {0, strPath, SharedData.Apptype.Player, False})
       dgvPlayers.Refresh()
     End If
   End Sub
 
-  Private Sub btnClearExternalPlayer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    My.Computer.Registry.SetValue(m_RegistrySettingsPath, "ExternalPlayer1_Path", "", Microsoft.Win32.RegistryValueKind.String)
-    'Me.lblExtPlayer1.Text = ""
-  End Sub
-
   Private Sub dgvPlayers_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvPlayers.CellContentClick
-    '
+    ' Make sure the user was clicking the delete button before removing the current row.
+    If e.ColumnIndex = Me.colDeletePlayer.Index AndAlso Me.dgvPlayers.SelectedRows.Count > 0 Then
+      m_PlayerBinding.RemoveCurrent()
+    End If
   End Sub
 
 #End Region
@@ -295,31 +251,30 @@ err:
     OpenFileDialog1.Filter = "Executable File|*.exe"
     OpenFileDialog1.Title = "Select External Application"
     OpenFileDialog1.AutoUpgradeEnabled = True
-    Dim AppPath As String = My.Computer.Registry.GetValue(m_RegistrySettingsPath, "App1_Path", "")
-    If AppPath = "" Then
+    Dim strPath As String = My.Computer.Registry.GetValue(m_RegistrySettingsPath, "App1_Path", "")
+    If strPath = "" Then
       OpenFileDialog1.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.ProgramFiles
     Else
-      OpenFileDialog1.InitialDirectory = My.Computer.FileSystem.GetParentPath(AppPath)
+      OpenFileDialog1.InitialDirectory = My.Computer.FileSystem.GetParentPath(strPath)
     End If
 
-    OpenFileDialog1.FileName = My.Computer.FileSystem.GetName(AppPath)
+    OpenFileDialog1.FileName = My.Computer.FileSystem.GetName(strPath)
 
     If OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then 'if ok button clicked
       Application.DoEvents() 'first close the selection window
-      AppPath = OpenFileDialog1.FileName
-      My.Computer.Registry.SetValue(m_RegistrySettingsPath, "App1_Path", AppPath, Microsoft.Win32.RegistryValueKind.String)
-      'Me.lblApp1.Text = ShrinkPathText(AppPath, lblApp1)
+      strPath = OpenFileDialog1.FileName
+
+      ' Default the id to 0 because the datatable will set the id automatically when records are inserted into the table later.
+      m_AppTable.Rows.Add(New Object() {0, strPath, SharedData.Apptype.Application, False, False})
+      dgvPlayers.Refresh()
     End If
   End Sub
 
-  ' --------------------------------------        CLEAR EXTERNAL APPS --------------------------------------------------------
-  Private Sub btnClearExternalApp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    My.Computer.Registry.SetValue(m_RegistrySettingsPath, "App1_Path", "", Microsoft.Win32.RegistryValueKind.String)
-    'Me.lblApp1.Text = ""
-  End Sub
-
   Private Sub dgvApps_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvApps.CellContentClick
-    '
+    ' Make sure the user was clicking the delete button before removing the current row.
+    If e.ColumnIndex = Me.colDeleteApp.Index AndAlso Me.dgvApps.SelectedRows.Count > 0 Then
+      m_AppBinding.RemoveCurrent()
+    End If
   End Sub
 #End Region
 
@@ -359,6 +314,13 @@ err:
 
   Private Sub EndApplication() Handles MyBase.FormClosed
     On Error Resume Next
+
+    SharedData.SaveTable(m_PlayerTable)
+    SharedData.SaveTable(m_AppTable)
+
+    m_PlayerTable.Dispose()
+    m_AppTable.Dispose()
+
     My.Settings.Save()
     My.Computer.Registry.SetValue(m_RegistrySettingsPath, "ReloadXBMCLauncher", 1, Microsoft.Win32.RegistryValueKind.String)
     Shell(My.Application.Info.DirectoryPath & "\XBMCLauncher.exe /r", AppWinStyle.Hide) 'Reload XBMCLauncher script.

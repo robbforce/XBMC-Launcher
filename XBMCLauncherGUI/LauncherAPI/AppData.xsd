@@ -12,10 +12,10 @@
   <xs:element name="AppData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AppData" msprop:Generator_UserDSName="AppData">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="App" msprop:Generator_TableClassName="AppDataTable" msprop:Generator_TableVarName="tableApp" msprop:Generator_RowChangedName="AppRowChanged" msprop:Generator_TablePropName="App" msprop:Generator_RowDeletingName="AppRowDeleting" msprop:Generator_RowChangingName="AppRowChanging" msprop:Generator_RowEvHandlerName="AppRowChangeEventHandler" msprop:Generator_RowDeletedName="AppRowDeleted" msprop:Generator_RowClassName="AppRow" msprop:Generator_UserTableName="App" msprop:Generator_RowEvArgName="AppRowChangeEvent">
+        <xs:element name="App" msprop:Generator_TableClassName="AppDataTable" msprop:Generator_TableVarName="tableApp" msprop:Generator_TablePropName="App" msprop:Generator_RowDeletingName="AppRowDeleting" msprop:Generator_RowChangingName="AppRowChanging" msprop:Generator_RowEvHandlerName="AppRowChangeEventHandler" msprop:Generator_RowDeletedName="AppRowDeleted" msprop:Generator_UserTableName="App" msprop:Generator_RowChangedName="AppRowChanged" msprop:Generator_RowEvArgName="AppRowChangeEvent" msprop:Generator_RowClassName="AppRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="id_App" msprop:Generator_ColumnVarNameInTable="columnid_App" msprop:Generator_ColumnPropNameInRow="id_App" msprop:Generator_ColumnPropNameInTable="id_AppColumn" msprop:Generator_UserColumnName="id_App" type="xs:int" />
+              <xs:element name="id_App" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="100" msprop:Generator_ColumnVarNameInTable="columnid_App" msprop:Generator_ColumnPropNameInRow="id_App" msprop:Generator_ColumnPropNameInTable="id_AppColumn" msprop:Generator_UserColumnName="id_App" type="xs:int" />
               <xs:element name="AppPath" msprop:Generator_ColumnVarNameInTable="columnAppPath" msprop:Generator_ColumnPropNameInRow="AppPath" msprop:Generator_ColumnPropNameInTable="AppPathColumn" msprop:Generator_UserColumnName="AppPath" type="xs:string" />
               <xs:element name="id_AppType" msprop:Generator_ColumnVarNameInTable="columnid_AppType" msprop:Generator_ColumnPropNameInRow="id_AppType" msprop:Generator_ColumnPropNameInTable="id_AppTypeColumn" msprop:Generator_UserColumnName="id_AppType" type="xs:int" />
               <xs:element name="StartWithKodi" msprop:Generator_ColumnVarNameInTable="columnStartWithKodi" msprop:Generator_ColumnPropNameInRow="StartWithKodi" msprop:Generator_ColumnPropNameInTable="StartWithKodiColumn" msprop:Generator_UserColumnName="StartWithKodi" type="xs:boolean" default="false" minOccurs="0" />
@@ -23,7 +23,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AppType" msprop:Generator_TableClassName="AppTypeDataTable" msprop:Generator_TableVarName="tableAppType" msprop:Generator_TablePropName="AppType" msprop:Generator_RowDeletingName="AppTypeRowDeleting" msprop:Generator_RowChangingName="AppTypeRowChanging" msprop:Generator_RowEvHandlerName="AppTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="AppTypeRowDeleted" msprop:Generator_UserTableName="AppType" msprop:Generator_RowChangedName="AppTypeRowChanged" msprop:Generator_RowEvArgName="AppTypeRowChangeEvent" msprop:Generator_RowClassName="AppTypeRow">
+        <xs:element name="AppType" msprop:Generator_TableClassName="AppTypeDataTable" msprop:Generator_TableVarName="tableAppType" msprop:Generator_RowChangedName="AppTypeRowChanged" msprop:Generator_TablePropName="AppType" msprop:Generator_RowDeletingName="AppTypeRowDeleting" msprop:Generator_RowChangingName="AppTypeRowChanging" msprop:Generator_RowEvHandlerName="AppTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="AppTypeRowDeleted" msprop:Generator_RowClassName="AppTypeRow" msprop:Generator_UserTableName="AppType" msprop:Generator_RowEvArgName="AppTypeRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id_AppType" msprop:Generator_ColumnVarNameInTable="columnid_AppType" msprop:Generator_ColumnPropNameInRow="id_AppType" msprop:Generator_ColumnPropNameInTable="id_AppTypeColumn" msprop:Generator_UserColumnName="id_AppType" type="xs:int" />
@@ -44,7 +44,7 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="AppType_App" msdata:parent="AppType" msdata:child="App" msdata:parentkey="id_AppType" msdata:childkey="id_AppType" msprop:Generator_UserChildTable="App" msprop:Generator_ChildPropName="GetAppRows" msprop:Generator_UserRelationName="AppType_App" msprop:Generator_RelationVarName="relationAppType_App" msprop:Generator_UserParentTable="AppType" msprop:Generator_ParentPropName="AppTypeRow" />
+      <msdata:Relationship name="AppType_App" msdata:parent="AppType" msdata:child="App" msdata:parentkey="id_AppType" msdata:childkey="id_AppType" msprop:Generator_UserChildTable="App" msprop:Generator_ChildPropName="GetAppRows" msprop:Generator_UserRelationName="AppType_App" msprop:Generator_ParentPropName="AppTypeRow" msprop:Generator_RelationVarName="relationAppType_App" msprop:Generator_UserParentTable="AppType" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

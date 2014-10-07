@@ -445,9 +445,9 @@ Partial Public Class AppData
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Overloads Function AddAppRow(ByVal id_App As Integer, ByVal AppPath As String, ByVal parentAppTypeRowByAppType_App As AppTypeRow, ByVal StartWithKodi As Boolean, ByVal KeepFocus As Boolean) As AppRow
+    Public Overloads Function AddAppRow(ByVal AppPath As String, ByVal parentAppTypeRowByAppType_App As AppTypeRow, ByVal StartWithKodi As Boolean, ByVal KeepFocus As Boolean) As AppRow
       Dim rowAppRow As AppRow = CType(Me.NewRow, AppRow)
-      Dim columnValuesArray() As Object = New Object() {id_App, AppPath, Nothing, StartWithKodi, KeepFocus}
+      Dim columnValuesArray() As Object = New Object() {Nothing, AppPath, Nothing, StartWithKodi, KeepFocus}
       If (Not (parentAppTypeRowByAppType_App) Is Nothing) Then
         columnValuesArray(2) = parentAppTypeRowByAppType_App(0)
       End If
@@ -500,6 +500,8 @@ Partial Public Class AppData
       Me.columnKeepFocus = New Global.System.Data.DataColumn("KeepFocus", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
       MyBase.Columns.Add(Me.columnKeepFocus)
       Me.Constraints.Add(New Global.System.Data.UniqueConstraint("AppKey1", New Global.System.Data.DataColumn() {Me.columnid_App}, True))
+      Me.columnid_App.AutoIncrement = True
+      Me.columnid_App.AutoIncrementSeed = 100
       Me.columnid_App.AllowDBNull = False
       Me.columnid_App.Unique = True
       Me.columnAppPath.AllowDBNull = False
